@@ -59,8 +59,9 @@ addChoice :: Part -> Part -> Part
 addChoice (Part t1 c1) (Part _ c2) = Part t1 (c1 ++ c2)
 
 storyToJSON :: Story -> Value
-storyToJSON story = object $ map partToJSON (M.toList story)
+storyToJSON story = object ["parts" .= partsObject]
   where
+    partsObject = object $ map partToJSON (M.toList story)
     partToJSON (partNum, Part text choices) =
      fromString (show partNum) .= object ["text" .= text, "choices" .= map choiceToJSON choices]
 
@@ -74,7 +75,7 @@ main = do
         Left err -> print err
         Right rows -> do
             let story = convertToStory rows
-            B.writeFile "story.json" (encode $ storyToJSON story)
+            B.writeFile "../front/story.json" (encode $ storyToJSON story)
             putStrLn "story.json generated successfully."
 
 

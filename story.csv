@@ -1,10 +1,10 @@
 part,text,choiceText,choiceSvg,nextPart
-1,You are at a fork in the road. Do you go left or right?,Left,S,2
-1,You are at a fork in the road. Do you go left or right?,Right,T,3
-2,You took the left path and found a river. Do you swim across or walk along the bank?,Swim,A,4
-2,You took the left path and found a river. Do you swim across or walk along the bank?,Walk,R,5
-3,You took the right path and found a mountain. Do you climb it or walk around it?,Climb,T,6
-3,You took the right path and found a mountain. Do you climb it or walk around it?,Walk Around,I,7
+1,Hello traveller. You are at a fork in the road. Do you go left or right?,Left,<rect width='50' height='50' style='fill:blue;' />,2
+1,Hello traveller. You are at a fork in the road. Do you go left or right?,Right,<circle cx='25' cy='25' r='25' style='fill:green;' />,3
+2,You took the left path and found a river. Do you swim across or walk along the bank?,Swim,<rect width='50' height='50' style='fill:blue;' />,4
+2,You took the left path and found a river. Do you swim across or walk along the bank?,Walk,<circle cx='25' cy='25' r='25' style='fill:green;' />,5
+3,You took the right path and found a mountain. Do you climb it or walk around it?,Climb,<rect width='50' height='50' style='fill:blue;' />,6
+3,You took the right path and found a mountain. Do you climb it or walk around it?,Walk Around,<circle cx='25' cy='25' r='25' style='fill:green;' />,7
 4,You swam across the river and reached a village. The end.,,,,
 5,You walked along the bank and found a bridge. The end.,,,,
 6,You climbed the mountain and saw a beautiful sunset. The end.,,,,
