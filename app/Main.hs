@@ -15,7 +15,7 @@ import Text.Read (readMaybe)
 data Choice = Choice {
     choiceText :: String,
     choiceSvg :: String,
-    nextPart :: Int
+    nextPart :: Maybe Int
 } deriving (Show)
 
 data Part = Part {
@@ -50,11 +50,11 @@ addTry (x:text:xs) = case readMaybe x :: Maybe Int of
     Just id ->
         if concat xs == []
         then M.insert id text M.empty -- Items after the second item are empty!
-        else M.insert id (text ++ choiceText ++ choiceSvg) M.empty
+        else M.insertWith addChoice id (Part text [choice]) M.empty
         where choiceText = head xs
               choiceSvg = head (tail xs)
               nextPart = readMaybe (head (tail (tail xs))) :: Maybe Int
-              
+              choice = Choice choiceText choiceSvg nextPart
   
 addRow :: [String] -> Story -> Story
 addRow [partStr, text, choiceText, choiceSvg, nextPartStr] story =
