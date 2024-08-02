@@ -75,7 +75,7 @@ main = do
         Left err -> print err
         Right rows -> do
             let story = convertToStory rows
-            B.writeFile "../front/story.json" (encode $ storyToJSON story)
+            B.writeFile "../interactive-story-front/story.json" (encode $ storyToJSON story)
             putStrLn "story.json generated successfully."
 
 
