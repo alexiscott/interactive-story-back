@@ -40,14 +40,21 @@ parseCSV = parse csvFile "(unknown)"
 convertToStory :: [[String]] -> Story
 convertToStory rows = foldr addRow M.empty (drop 1 rows)
 
+l1 = ["1","Some text","", "", ""]
+l2 = ["1","Some text and more","A", "B", "C"]
+
 addTry :: [String] -> M.Map Int String
 addTry [] = error "Missing data"
-addTry (x:xs) = case readMaybe x :: Maybe Int of
+addTry (x:text:xs) = case readMaybe x :: Maybe Int of
     Nothing -> error "Invalid key format"
     Just id ->
-        if concat (tail xs) == []
-        then M.insert id (head xs) M.empty -- Items after the second item are empty!
-        else M.insert id ((head xs) ++ "stuff to come") M.empty
+        if concat xs == []
+        then M.insert id text M.empty -- Items after the second item are empty!
+        else M.insert id (text ++ choiceText ++ choiceSvg) M.empty
+        where choiceText = head xs
+              choiceSvg = head (tail xs)
+              nextPart = readMaybe (head (tail (tail xs))) :: Maybe Int
+              
   
 addRow :: [String] -> Story -> Story
 addRow [partStr, text, choiceText, choiceSvg, nextPartStr] story =
